@@ -18,7 +18,7 @@
 
       
 
-      .indexPage {
+      .landingPage {
 
       display: block;
       position: absolute;
@@ -51,7 +51,7 @@
 
 }
 
-.indexPage .landingPage {
+.landingPage .landingPage40591427 {
     position: absolute;
       box-sizing: content-box;
       -ms-transform: rotate(0.00deg);
@@ -65,13 +65,13 @@
       margin-top: 0.00px;
       margin-right: 0.00px;
       margin-bottom: 0.00px;
-      margin-left: 0.00px;
+      margin-left: -151px;
       padding-top: 0.00px;
       padding-right: 0.00px;
       padding-bottom: 0.00px;
       padding-left: 0.00px;
       background-color: rgba(255, 255, 255, 0);
-      text-align: center;
+      text-align: left;
       letter-spacing: 0.00px;
       color: rgba(112, 112, 112, 1);
       -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
@@ -83,10 +83,10 @@
       box-shadow: none;
       overflow-x: unset;
       overflow-y: unset;
-      width: 798.00px;
-    height: 131.00px;
-    left: 471.00px;
-    top: 91.00px;
+      width: 302.00px;
+    height: 85.00px;
+    left: 50%;
+    top: 69.00px;
 
 }
 
