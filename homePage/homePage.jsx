@@ -12,12 +12,12 @@ class HomePage extends React.Component {
 
       };
   }
-  
+
   render() {
-    
+
     return (
-          <div data-layer="8aa62408-73a0-4281-8768-37d990c911d0" className="homePage">        <div data-layer="06fd2ac9-bdd7-48bb-96de-eb7a8d39c0dc" className="image1"></div>
-        <div data-layer="8c9a5601-b3b2-47cc-b1d1-cea6977ef170" className="rectangle6"></div>
+          <div data-layer="8aa62408-73a0-4281-8768-37d990c911d0" className="homePage">        <div data-layer="06fd2ac9-bdd7-48bb-96de-eb7a8d39c0dc" className="image1"/>
+        <div data-layer="8c9a5601-b3b2-47cc-b1d1-cea6977ef170" className="rectangle6"/>
         <div data-layer="25ffbf5a-0049-4a43-b1fb-77eb4d5fa6c3" className="footer">            <div data-layer="42f803e6-6ed0-458f-ad63-823772e9b586" className="backgroundStylestyle3"></div>
             <div data-layer="9a20346b-e407-4f3f-b497-dcae6b9f93e9" className="descriptionPlatformdesktopstylestyle3tagp">Give Data, Save Lives</div>
             <div data-layer="a2497241-fb20-4489-9981-b1d703eee8b1" className="companyPlatformdesktopstylestyle3tagh4">Covid Watch</div>
