@@ -1,0 +1,54 @@
+
+import React from "react";
+import PropTypes from "prop-types";
+
+import "./web19206.css";
+
+class Web19206 extends React.Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {
+
+      };
+  }
+  
+  render() {
+    
+    return (
+          <div data-layer="b3112a95-1893-4d9f-9b0c-3d263c46df6d" className="web19206">        <svg data-layer="3aabb689-6f3b-419f-b957-f631882872c9" preserveAspectRatio="none" viewBox="0 0 1600 900" className="backgroundStylestyle2"><path d="M 0 0 L 1600 0 L 1600 900 L 0 900 L 0 0 Z"  /></svg>
+        <div data-layer="1407222e-ca7f-4e84-ae9b-3f61fe43113a" className="signIn">            <div data-layer="d46d5ac2-9d55-40fd-a583-dd5dc8caf743" className="card">                <div data-layer="b55745d0-6e5c-452f-a3fb-7abc7f5d6fa5" className="area55ccea19"></div>
+                <div data-layer="21b22b14-1987-466d-9033-41eb77842627" className="metadata7d5793e0">{"config":{"DISPLAY_ELEMENTS":"DEFAULT"},"type":"Card","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T19:33:47.479Z"}</div>
+</div>
+            <div data-layer="6935f0aa-d3c9-4590-86f2-ee5da90d6ad9" className="button">                <div data-layer="e78034dd-a0c4-43ea-88a7-a48a97a6e1d6" className="aread15a44c7"></div>
+                <div data-layer="d69d4c7c-c846-49c3-b55c-a9c5ae4432e9" className="label">End Assessment</div>
+                <div data-layer="6b2ac6ef-e149-411c-81d9-d58979c94bb2" className="iconb40152a4">                    <div data-layer="66ecab30-fb62-45f0-a8fb-80fa1a25914e" className="area"></div>
+                    <div data-layer="c3260f21-1c6a-403c-aade-68e707d1c421" className="icon">                        <svg data-layer="930d0d4e-5ff4-4430-8fc5-3574aa32c600" preserveAspectRatio="none" viewBox="0.04049995541572571 1.248750239610672 19.919921815395355 17.693237245082855" className="path"><path d="M 17.36700057983398 3.842000007629395 C 15.57699966430664 2.051000118255615 12.67300033569336 2.051000118255615 10.88300037384033 3.842000007629395 L 10 4.724999904632568 L 9.116999626159668 3.842000007629395 C 7.326000213623047 2.051000118255615 4.423999786376953 2.051000118255615 2.632999897003174 3.842000007629395 C 0.8429999947547913 5.631999969482422 0.8429999947547913 8.534999847412109 2.632999897003174 10.32499980926514 L 3.516999959945679 11.20800018310547 L 10 17.6919994354248 L 16.48299980163574 11.20800018310547 L 17.36700057983398 10.32499980926514 C 19.15800094604492 8.534999847412109 19.15800094604492 5.631999969482422 17.36700057983398 3.842000007629395 Z"  /></svg>
+</div>
+                    <div data-layer="f1f76ffc-857a-4f8f-b6b2-cf6e8c470e24" className="metadata275d38e8">{"config":{"STATE":"DEFAULT","STYLE":"STYLE1","SIZE":"MEDIUM","ICON":"feather/heart"},"type":"Icon","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T19:33:47.623Z"}</div>
+</div>
+                <div data-layer="7e54f97d-66e5-4545-bdda-a8cd7d5b2042" className="metadata">{"config":{"STATE":"DEFAULT","STYLE":"STYLE1","DISPLAY_ELEMENTS":"Label","SIZE":"MEDIUM"},"type":"Button","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T19:33:47.630Z"}</div>
+</div>
+            <div data-layer="1838cd43-424e-41da-b0ac-a2664dd8f44a" className="xSignInWith">                <svg data-layer="40020267-ef26-4dcf-849b-3d51ca8c415f" preserveAspectRatio="none" viewBox="0 -1 72 2" className="lineStylestyle1f9c6594f"><path d="M 0 0 L 72 0"  /></svg>
+                <svg data-layer="18fa4011-a496-44aa-9531-f2a8635ee432" preserveAspectRatio="none" viewBox="0 -1 72 2" className="lineStylestyle1"><path d="M 0 0 L 72 0"  /></svg>
+                <div data-layer="a2a00512-82ee-41ee-aec8-676cbd3b3750" className="typographyPlatformdesktopstylestyle1taguis">Please continue practicing social distancing and <br />retake the test if any symptoms arise or if you come<br />into contact with someone who has been tested <br />positive for Covid-19</div>
+</div>
+            <div data-layer="66626783-b33b-4ada-979d-629a06bcd3a2" className="titlePlatformdesktopstylestyle1tagh4">You are most likely not a carrier of Covid</div>
+</div>
+</div>
+
+    );
+  }
+}
+
+Web19206.propTypes = {
+
+}
+
+Web19206.defaultProps = {
+
+}
+
+
+export default Web19206;
+          
