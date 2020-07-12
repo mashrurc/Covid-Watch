@@ -4,14 +4,544 @@
     <head>
         <meta charset="utf-8">
         <title>Global Data</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA&callback=initMap&libraries=&v=weekly"defer></script>
         
         <link rel="stylesheet" href="globalData.css">
+
+        <style type="text/css">
+            #map {
+                height: 400px;
+                width: 600px;
+                margin-top: 50px;
+                margin-left: 150px;
+                border-radius: 30px;
+                -moz-border-radius: 30px;
+            }
+        
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+
+        <script>
+            (function (exports) {
+                "use strict";
+                var citymap = {
+                    newyork: {
+                        center: {
+                            lat: 40.714,
+                            lng: -74.005
+                        },
+                        cases: 326798
+                    },
+                    california: {
+                        center: {
+                            lat: 34.052,
+                            lng: -118.243
+                        },
+                        cases: 318941
+                    },
+                    texas: {
+                        center: {
+                            lat: 31.9686,
+                            lng: -99.9018
+                        },
+                        cases: 257359
+                    },
+                    florida: {
+                        center: {
+                            lat: 27.6648,
+                            lng: -81.5158
+                        },
+                        cases: 254511
+                    },
+                    illinois: {
+                        center: {
+                            lat: 40.6331,
+                            lng: -89.3985
+                        },
+                        cases: 154000
+                    },
+                    arizona: {
+                        center: {
+                            lat: 34.0489,
+                            lng: -111.0937
+                        },
+                        cases: 120000
+                    },
+                    georgia: {
+                        center: {
+                            lat: 32.1656,
+                            lng: -82.9001
+                        },
+                        cases: 114000
+                    },
+                    massachusetts: {
+                        center: {
+                            lat: 42.4072,
+                            lng: -71.3824
+                        },
+                        cases: 111000
+                    },
+                    pennsylvania: {
+                        center: {
+                            lat: 41.2033,
+                            lng: -77.1945
+                        },
+                        cases: 99000
+                    },
+                    northcarolina: {
+                        center: {
+                            lat: 35.7596,
+                            lng: -79.0193
+                        },
+                        cases: 84000
+                    },
+                    louisiana: {
+                        center: {
+                            lat: 30.9843,
+                            lng: -91.9623
+                        },
+                        cases: 77000
+                    },
+                    michigan: {
+                        center: {
+                            lat: 44.3148,
+                            lng: -85.6024
+                        },
+                        cases: 76000
+                    },
+                    maryland: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 72000
+                    },
+                    maryland: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 72000
+                    },
+                    //provinces
+                    bc: {
+                        center: {
+                            lat: 51.2538,
+                            lng: -85.3232
+                        },
+                        cases: 48199
+                    },
+                    alberta: {
+                        center: {
+                            lat: 46.8139,
+                            lng: -71.2080
+                        },
+                        cases: 48901
+                    },
+                    saskatchewan: {
+                        center: {
+                            lat: 53.7609,
+                            lng: -98.8139
+                        },
+                        cases: 37189
+                    },
+                    manitoba: {
+                        center: {
+                            lat: 53.9333,
+                            lng: -116.5765
+                        },
+                        cases: 59890
+                    },
+                    ontario: {
+                        center: {
+                            lat: 53.7267,
+                            lng: -127.6476
+                        },
+                        cases: 63521
+                    },
+                    quebec: {
+                        center: {
+                            lat: 52.9399,
+                            lng: -106.4509
+                        },
+                        cases: 60938
+                    },
+                    yukon: {
+                        center: {
+                            lat: 53.1355,
+                            lng: 57.6604
+                        },
+                        cases: 76387
+                    },
+                    nw: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 39829
+                    },
+                    nunavut: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 41879
+                    },
+                    pei: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 51382
+                    },
+                    nb: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases:50382
+                    },
+                    //
+                    nunavut: {
+                        center: {
+                            lat: 46.5653,
+                            lng: -66.4619
+                        },
+                        cases: 44782
+                    },
+                    pei: {
+                        center: {
+                            lat: 44.6820,
+                            lng: -63.7443
+                        },
+                        cases: 39892
+                    },
+                    nb: {
+                        center: {
+                            lat: 46.5107,
+                            lng: -63.4168
+                        },
+                        cases: 61289
+                    },
+                    ns: {
+                        center: {
+                            lat: 64.2823,
+                            lng: -135.0000,
+                        },
+                        cases: 44989
+                    },
+                    pey: {
+                        center: {
+                            lat: 64.8255,
+                            lng: -124.8457
+                        },
+                        cases: 31989
+                    },
+                    yukon: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 9191
+                    },
+                    north: {
+                        center: {
+                            lat: 70.2998,
+                            lng: -83.1076
+                        },
+                        cases: 15892
+                    },
+                    nun: {
+                        center: {
+                            lat: 46.8139,
+                            lng: -71.2080
+                        },
+                        cases: 19821
+                    },
+
+                    washington: {
+                        center: {
+                            lat: 47.7511,
+                            lng: -120.7401
+                        },
+                        cases: 41319
+                    },
+                    wyoming: {
+                        center: {
+                            lat: 43.0760,
+                            lng: -107.2903
+                        },
+                        cases: 11839
+                    },
+                    montana: {
+                        center: {
+                            lat:46.8797,
+                            lng: -110.3626
+                        },
+                        cases: 11672
+                    },
+                    ndakota: {
+                        center: {
+                            lat: 47.5515,
+                            lng: -101.0020
+                        },
+                        cases: 14892
+                    },
+                    minnesota: {
+                        center: {
+                            lat: 46.7296,
+                            lng: -94.6859
+                        },
+                        cases: 51609
+                    },
+                    oregon: {
+                        center: {
+                            lat: 43.8041,
+                            lng: -120.5542
+                        },
+                        cases: 21789
+                    },
+                    idaho: {
+                        center: {
+                            lat: 44.0682,
+                            lng: -114.7420
+                        },
+                        cases: 12891
+                    },
+                    southdakota: {
+                        center: {
+                            lat: 43.9695,
+                            lng: -99.9000,
+                        },
+                        cases: 18178
+                    },
+                    iowa: {
+                        center: {
+                            lat: 41.8780,
+                            lng: -93.0977
+                        },
+                        cases: 35829
+                    },
+                    kansas: {
+                        center: {
+                            lat: 39.0119,
+                            lng: -98.4842
+                        },
+                        cases: 23829
+                    },
+                    utah: {
+                        center: {
+                            lat: 39.3210,
+                            lng: -111.0937
+                        },
+                        cases: 39829
+                    },
+                    colorado: {
+                        center: {
+                            lat: 39.5501,
+                            lng: -105.7821
+                        },
+                        cases: 42288
+                    },
+                    missouri: {
+                        center: {
+                            lat: 37.9643,
+                            lng: -91.8318
+                        },
+                        cases: 31982
+                    },
+
+                    
+
+                };
+
+                var innermap = {
+                    usa: {
+                        center: {
+                            lat:37.09024,
+                            lng:-95.712891
+                        },
+                        cases: 3382508
+                    },
+                    india: {
+                        center: {
+                            lat:20.593684,
+                            lng: 78.96288
+                        },
+                        cases: 873816
+                    },
+                    brazil: {
+                        center: {
+                            lat: -14.235004,
+                            lng: -51.92528
+                        },
+                        cases: 1837828
+                    },
+                    russia: {
+                        center: {
+                            lat:61.52401,
+                            lng: 105.318756
+                        },
+                        cases: 727382
+                    },
+                    peru: {
+                        center: {
+                            lat: -9.189967,
+                            lng: -75.015152
+                        },
+                        cases: 322782
+                    },
+                    chile: {
+                        center: {
+                            lat:-35.675147,
+                            lng: -71.542969
+                        },
+                        cases: 317828
+                    },
+                }
+
+                function initMap() {
+                    // Create the map.
+                    var map = new google.maps.Map(document.getElementById("rectangle4"), {
+                        zoom: 2,
+                        center: {
+                            lat: 40.4637,
+                            lng: 3.7492  
+                        },
+                        styles: [
+                            {
+                                "stylers": [
+                                    {
+                                        "hue": "#393E42"
+                                    },
+                                    {
+                                        "invert_lightness": true
+                                    },
+                                    {
+                                        "saturation": -85
+                                    },
+                                    {
+                                        "lightness": 33
+                                    },
+                                    {
+                                        "gamma": 0.5
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "water",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#212128"
+                                    }
+                                ]
+                            }
+                        ],
+                        zoomControl: true,
+                        mapTypeControl: false,
+                        scaleControl: false,
+                        streetViewControl: false,
+                        rotateControl: false,
+                        fullscreenControl: true
+                    }); // Construct the circle for each value in citymap.
+                    // Note: We scale the area of the circle based on the cases.
+
+                    for (var inner in innermap) {
+
+                        var innerCircle = new google.maps.Circle({
+                            strokeColor: "#6e00cf",
+                            strokeOpacity: 1,
+                            strokeWeight: 1,
+                            fillColor: "#ff0af3",
+                            fillOpacity: 0.5,
+                            map: map,
+                            center: innermap[inner].center,
+                            radius: Math.sqrt(innermap[inner].cases) * 300,
+                        });
+
+                    }
+
+                    for (var city in citymap) {
+                        
+                        // Add the circle for this city to the map.
+                        // var cityCircle = new google.maps.Circle({
+                        //     strokeColor: "#780613",
+                        //     strokeOpacity: 0.8,
+                        //     strokeWeight: 1.5,
+                        //     fillColor: "#FF0000",
+                        //     fillOpacity: 0.08,
+                        //     map: map,
+                        //     center: citymap[city].center,
+                        //     radius: Math.sqrt(citymap[city].cases) * 150,
+                        // });
+
+                        var marker = new google.maps.Marker({
+                            position: citymap[city].center,
+                            icon: {
+                                url: "assets/state.png",
+                                scaledSize: new google.maps.Size(citymap[city].cases/8000, citymap[city].cases/8000),
+                                fillOpacity: 0.8
+                            },
+                            map: map
+                        });
+                    }
+
+                }
+
+                exports.innermap = innermap;
+                exports.citymap = citymap;
+                exports.initMap = initMap;
+
+                var userLat = localStorage.getItem('userLat');
+                var userLong = localStorage.getItem('userLong');
+
+                console.log("USER LOCATION", userLat, userLong);
+
+                function getAddress(latitude, longitude) {
+                    return new Promise(function (resolve, reject) {
+                        var request = new XMLHttpRequest();
+
+                        var method = 'GET';
+                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA';
+                        var async = true;
+
+                        request.open(method, url, async);
+                        request.onreadystatechange = function () {
+                            if (request.readyState == 4) {
+                                if (request.status == 200) {
+                                    var data = JSON.parse(request.responseText);
+                                    console.log(data);
+                                    var address = data.results[0];
+                                    console.log(address);
+                                    resolve(address);
+                                }
+                                else {
+                                    reject(request.status);
+                                }
+                            }
+                        };
+                        request.send();
+                    });
+                };
+
+                getAddress(userLat, userLong).then(console.log).catch(console.error);
+
+            })((this.window = this.window || {}));
+        </script>
+
     </head>
 
     <body>
         <div data-layer="b751285d-3bf3-400c-95d8-4aa0e48da370" class="globalData">        <svg data-layer="4dcd2132-7e38-4acf-b0ff-197a8a734b7f" preserveAspectRatio="none" viewBox="-0.75 -0.75 1601.5 901.5" class="path9"><path d="M 0 0 L 1600 0 L 1600 900 L 0 900 L 0 0 Z"  /></svg>
         <div data-layer="9676109c-87d0-4ec8-b00f-c01df4a62916" class="globalData29d26be8">Global Data</div>
-        <div data-layer="d05ce185-54cf-45cc-ae67-92311377400b" class="rectangle4"></div>
+        <div data-layer="d05ce185-54cf-45cc-ae67-92311377400b" class="rectangle4" id="rectangle4"></div>
         <div data-layer="33850afd-7ad2-4ec7-868e-8778b9c77f2d" class="badge">            <div data-layer="11ed979f-5856-40b1-a919-8742a436b96f" class="area338589e7"></div>
             <div data-layer="25145898-8086-4b8d-a042-5705633f1d61" class="metadatab1d6666d">{"config":{},"type":"Badge","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T20:42:57.015Z"}</div>
 </div>
