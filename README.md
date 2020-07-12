@@ -1,1 +1,2 @@
-# Covid-Tracker
+# COVID WATCH
+![COVID-WATCH](https://cdn.discordapp.com/attachments/726220926139629639/731927255759978576/ICON.png)
