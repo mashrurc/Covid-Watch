@@ -21,10 +21,11 @@
         }
 
         function showPosition(position) {
-            console.log("Latitude: " + position.coords.latitude +
-                "Longitude: " + position.coords.longitude);
+            localStorage.setItem('userLat', position.coords.latitude);
+            localStorage.setItem('userLong', position.coords.longitude);
             window.location.href = '../Page 2/web19201.html';
         }
+
     </script>
     <style>
         input,
