@@ -4,15 +4,336 @@
     <head>
         <meta charset="utf-8">
         <title>Dashboard</title>
-        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA&callback=initMap&libraries=&v=weekly"defer></script>
         <link rel="stylesheet" href="dashboard.css">
+
+        <style type="text/css">
+            #map {
+                height: 400px;
+                width: 600px;
+                margin-top: 50px;
+                margin-left: 150px;
+                border-radius: 30px;
+                -moz-border-radius: 30px;
+            }
+        
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+
+        <script>
+            (function (exports) {
+                "use strict";
+                var citymap = {
+                    newyork: {
+                        center: {
+                            lat: 40.714,
+                            lng: -74.005
+                        },
+                        cases: 426798
+                    },
+                    california: {
+                        center: {
+                            lat: 34.052,
+                            lng: -118.243
+                        },
+                        cases: 318941
+                    },
+                    texas: {
+                        center: {
+                            lat: 31.9686,
+                            lng: -99.9018
+                        },
+                        cases: 257359
+                    },
+                    florida: {
+                        center: {
+                            lat: 27.6648,
+                            lng: -81.5158
+                        },
+                        cases: 254511
+                    },
+                    illinois: {
+                        center: {
+                            lat: 40.6331,
+                            lng: -89.3985
+                        },
+                        cases: 154000
+                    },
+                    arizona: {
+                        center: {
+                            lat: 34.0489,
+                            lng: -111.0937
+                        },
+                        cases: 120000
+                    },
+                    georgia: {
+                        center: {
+                            lat: 32.1656,
+                            lng: -82.9001
+                        },
+                        cases: 114000
+                    },
+                    massachusetts: {
+                        center: {
+                            lat: 42.4072,
+                            lng: -71.3824
+                        },
+                        cases: 111000
+                    },
+                    pennsylvania: {
+                        center: {
+                            lat: 41.2033,
+                            lng: -77.1945
+                        },
+                        cases: 99000
+                    },
+                    northcarolina: {
+                        center: {
+                            lat: 35.7596,
+                            lng: -79.0193
+                        },
+                        cases: 84000
+                    },
+                    louisiana: {
+                        center: {
+                            lat: 30.9843,
+                            lng: -91.9623
+                        },
+                        cases: 77000
+                    },
+                    michigan: {
+                        center: {
+                            lat: 44.3148,
+                            lng: -85.6024
+                        },
+                        cases: 76000
+                    },
+                    maryland: {
+                        center: {
+                            lat: 39.0458,
+                            lng: -76.6413
+                        },
+                        cases: 72000
+                    },
+                    
+                    //canada 
+                    toronto: {
+                        center: {
+                            lat: 43.6532,
+                            lng: -79.3832
+                        },
+                        cases: 14678
+                    },
+                    ottawa: {
+                        center: {
+                            lat: 45.4215,
+                            lng: -75.6972
+                        },
+                        cases: 2118
+                    },
+                    vancouver: {
+                        center: {
+                            lat: 49.2827,
+                            lng: -123.1207
+                        },
+                        cases: 3054
+                    },
+                    edmonton: {
+                        center: {
+                            lat: 53.5461,
+                            lng: -113.4938
+                        },
+                        cases: 5627
+                    },
+                    calgary: {
+                        center: {
+                            lat: 51.0447,
+                            lng: -114.0719
+                        },
+                        cases: 4821
+                    },
+                    winnipeg: {
+                        center: {
+                            lat: 49.8951,
+                            lng: -97.1384
+                        },
+                        cases: 6281
+                    },
+                    montreal: {
+                        center: {
+                            lat: 45.5005,
+                            lng: -73.5667
+                        },
+                        cases: 	27541
+                    },
+                };
+
+                var innermap = {
+                    brooklyn: {
+                        center: {
+                            lat: 40.6782,
+                            lng: -73.9442
+                        },
+                        cases: 4000
+                    },
+                }
+
+                function initMap() {
+                    var userLat = localStorage.getItem('userLat');
+                    var userLong = localStorage.getItem('userLong');
+                    // Create the map.
+                    var map = new google.maps.Map(document.getElementById("rectangle4"), {
+                        zoom: 8,
+                        center: {
+                            lat: parseInt(userLat),
+                            lng: parseInt(userLong)
+                        },
+                        styles: [
+                            {
+                                "stylers": [
+                                    {
+                                        "hue": "#393E42"
+                                    },
+                                    {
+                                        "invert_lightness": true
+                                    },
+                                    {
+                                        "saturation": -85
+                                    },
+                                    {
+                                        "lightness": 33
+                                    },
+                                    {
+                                        "gamma": 0.5
+                                    }
+                                ]
+                            },
+                            {
+                                "featureType": "water",
+                                "elementType": "geometry",
+                                "stylers": [
+                                    {
+                                        "color": "#212128"
+                                    }
+                                ]
+                            }
+                        ],
+                        zoomControl: true,
+                        mapTypeControl: false,
+                        scaleControl: false,
+                        streetViewControl: false,
+                        rotateControl: false,
+                        fullscreenControl: true
+                    }); // Construct the circle for each value in citymap.
+                    // Note: We scale the area of the circle based on the cases.
+
+                    for (var inner in innermap) {
+
+                        // Add the circle for this city to the map.
+                        // var innerCircle = new google.maps.Circle({
+                        //     strokeColor: "#6e00cf",
+                        //     strokeOpacity: 0.5,
+                        //     strokeWeight: 1,
+                        //     fillColor: "#ff0af3",
+                        //     fillOpacity: 0.5,
+                        //     map: map,
+                        //     center: innermap[inner].center,
+                        //     radius: Math.sqrt(innermap[inner].cases) * 20,
+                        // });
+
+                        var marker = new google.maps.Marker({
+                            position: innermap[inner].center,
+                            icon: {
+                                url: "assets/city.png",
+                                scaledSize: new google.maps.Size(innermap[inner].cases / 350, innermap[inner].cases / 350),
+                                fillOpacity: 0.8
+                            },
+                            map: map
+                        });
+                    }
+
+                    for (var city in citymap) {
+                        
+                        // Add the circle for this city to the map.
+                        // var cityCircle = new google.maps.Circle({
+                        //     strokeColor: "#780613",
+                        //     strokeOpacity: 0.8,
+                        //     strokeWeight: 1.5,
+                        //     fillColor: "#FF0000",
+                        //     fillOpacity: 0.08,
+                        //     map: map,
+                        //     center: citymap[city].center,
+                        //     radius: Math.sqrt(citymap[city].cases) * 150,
+                        // });
+
+                        var marker = new google.maps.Marker({
+                            position: citymap[city].center,
+                            icon: {
+                                url: "assets/state.png",
+                                scaledSize: new google.maps.Size(citymap[city].cases/5000, citymap[city].cases/5000),
+                                fillOpacity: 0.8
+                            },
+                            map: map
+                        });
+                    }
+
+                }
+
+                exports.innermap = innermap;
+                exports.citymap = citymap;
+                exports.initMap = initMap;
+
+                var userLat = localStorage.getItem('userLat');
+                var userLong = localStorage.getItem('userLong');
+
+                console.log("USER LOCATION", userLat, userLong);
+
+                function getAddress(latitude, longitude) {
+                    return new Promise(function (resolve, reject) {
+                        var request = new XMLHttpRequest();
+
+                        var method = 'GET';
+                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA';
+                        var async = true;
+
+                        request.open(method, url, async);
+                        request.onreadystatechange = function () {
+                            if (request.readyState == 4) {
+                                if (request.status == 200) {
+                                    var data = JSON.parse(request.responseText);
+                                    console.log(data);
+                                    var address = data.results[0];
+                                    console.log(address);
+                                    resolve(address);
+                                }
+                                else {
+                                    reject(request.status);
+                                }
+                            }
+                        };
+                        request.send();
+                    });
+                };
+
+                getAddress(userLat, userLong).then(console.log).catch(console.error);
+
+            })((this.window = this.window || {}));
+        </script>
+
     </head>
 
     <body>
         <div data-layer="eb004c89-d012-41f5-877f-9563b6d1e9e5" class="dashboard">        <svg data-layer="f72dddea-dffa-4818-a57f-a30fa03f8bc2" preserveAspectRatio="none" viewBox="-0.75 -0.75 1601.5 901.5" class="path9"><path d="M 0 0 L 1600 0 L 1600 900 L 0 900 L 0 0 Z"  /></svg>
         <div data-layer="1b8035e9-ac55-4338-b746-39c0c33c3142" class="affectedAreas">Affected Areas </div>
-        <div data-layer="ad2a8be9-abd3-4da5-a505-bc79d713f044" class="rectangle4"></div>
-        <div data-layer="74554da1-e21f-4fa2-9c21-bf8d0eeca6e3" class="dropdownec9a0707">            <div data-layer="283cbc09-7b2f-4f7d-ad97-6a1702979721" class="listeafcad3e">                <div data-layer="0f9e8f29-6b15-4deb-a549-1bab77102e95" class="cardd45ef31e">                    <div data-layer="9a456694-d603-44f9-9584-a1d06c4ee52e" class="areace69687a"></div>
+        <div data-layer="ad2a8be9-abd3-4da5-a505-bc79d713f044" class="rectangle4" id="rectangle4"></div>
+        <div data-layer="74554da1-e21f-4fa2-9c21-bf8d0eeca6e3" class="dropdownec9a0707">            
+        <div data-layer="283cbc09-7b2f-4f7d-ad97-6a1702979721" class="listeafcad3e">                <div data-layer="0f9e8f29-6b15-4deb-a549-1bab77102e95" class="cardd45ef31e">                    <div data-layer="9a456694-d603-44f9-9584-a1d06c4ee52e" class="areace69687a"></div>
                     <div data-layer="7288d0f1-75de-415f-96b0-6d4c39fb9749" class="metadata03b7ae45">{"config":{"DISPLAY_ELEMENTS":"CARD"},"type":"Card","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T20:39:43.108Z"}</div>
 </div>
                 <div data-layer="a798bb84-ab9e-4669-895f-4740d7000e0e" class="placeholderListItem84b400fd">                    <div data-layer="6678764b-66dc-45a6-b7bb-9f548a2551b8" class="base1392857b"></div>

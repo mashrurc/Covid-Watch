@@ -17,6 +17,75 @@
       }
 
       
+      
+.dashboard {
+  display: block;
+  position: absolute;
+  box-sizing: content-box;
+  -ms-transform: rotate(0.00deg);
+  -webkit-transform: rotate(0.00deg);
+  transform: rotate(0.00deg);
+  -ms-transform-origin: center;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  opacity: 1;
+  cursor: default;
+  margin-top: 0.00px;
+  margin-right: 0.00px;
+  margin-bottom: 0.00px;
+  margin-left: 0.00px;
+  padding-top: 0.00px;
+  padding-right: 0.00px;
+  padding-bottom: 0.00px;
+  padding-left: 0.00px;
+  overflow-x: auto;
+  overflow-y: auto;
+  background-color: rgb(33, 33, 33);
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+}
+
+.dashboard .dashboard88a6b24b {
+  position: absolute;
+  box-sizing: content-box;
+  -ms-transform: rotate(0.00deg);
+  -webkit-transform: rotate(0.00deg);
+  transform: rotate(0.00deg);
+  -ms-transform-origin: center;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  opacity: 1;
+  cursor: default;
+  margin-top: 0.00px;
+  margin-right: 0.00px;
+  margin-bottom: 0.00px;
+  margin-left: 0.00px;
+  padding-top: 0.00px;
+  padding-right: 0.00px;
+  padding-bottom: 0.00px;
+  padding-left: 0.00px;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  letter-spacing: 0.00px;
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
+  font-size: 55.00px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: 'Segoe UI', Arial;
+  text-decoration: none;
+  box-shadow: none;
+  overflow-x: unset;
+  overflow-y: unset;
+  white-space: pre;
+  width: 320.00px;
+  height: 73.00px;
+  left: 800.00px;
+  top: 90.00px;
+}
+
 
       .dashboard {
 
@@ -5096,8 +5165,9 @@
       border-bottom-right-radius: 0.00px;
       box-shadow: none;
       -webkit-filter: blur(2px);
-  filter: blur(2px)
-      width: 393.00px;
+
+   filter: blur(2px);
+    width: 393.00px;
     height: 268.00px;
     left: 28.00px;
     top: 609.00px;
@@ -6255,7 +6325,7 @@
       border-bottom-right-radius: 0.00px;
       box-shadow: none;
       -webkit-filter: blur(2px);
-  filter: blur(2px)
+  filter: blur(2px);
       width: 317.00px;
     height: 172.00px;
     left: 1252.00px;
@@ -6346,7 +6416,7 @@
       border-bottom-right-radius: 22.00px;
       box-shadow: none;
       -webkit-filter: blur(2px);
-  filter: blur(2px)
+  filter: blur(2px);
       width: 342.00px;
     height: 269.00px;
     left: 1227.00px;
