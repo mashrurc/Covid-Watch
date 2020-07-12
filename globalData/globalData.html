@@ -1,602 +1,612 @@
 <!DOCTYPE html>
-    <html>
+<html>
 
-    <head>
-        <meta charset="utf-8">
-        <title>Global Data</title>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA&callback=initMap&libraries=&v=weekly"defer></script>
+<head>
+    <meta charset="utf-8">
+    <title>Global Data</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA&callback=initMap&libraries=&v=weekly" defer></script>
+
+    <link rel="stylesheet" href="globalData.css">
+
+    <style type="text/css">
+        #map {
+            height: 400px;
+            width: 600px;
+            margin-top: 50px;
+            margin-left: 150px;
+            border-radius: 30px;
+            -moz-border-radius: 30px;
+        }
         
-        <link rel="stylesheet" href="globalData.css">
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 
-        <style type="text/css">
-            #map {
-                height: 400px;
-                width: 600px;
-                margin-top: 50px;
-                margin-left: 150px;
-                border-radius: 30px;
-                -moz-border-radius: 30px;
+    <script>
+        (function(exports) {
+            "use strict";
+            var citymap = {
+                newyork: {
+                    center: {
+                        lat: 40.714,
+                        lng: -74.005
+                    },
+                    cases: 326798
+                },
+                california: {
+                    center: {
+                        lat: 34.052,
+                        lng: -118.243
+                    },
+                    cases: 318941
+                },
+                texas: {
+                    center: {
+                        lat: 31.9686,
+                        lng: -99.9018
+                    },
+                    cases: 257359
+                },
+                florida: {
+                    center: {
+                        lat: 27.6648,
+                        lng: -81.5158
+                    },
+                    cases: 254511
+                },
+                illinois: {
+                    center: {
+                        lat: 40.6331,
+                        lng: -89.3985
+                    },
+                    cases: 154000
+                },
+                arizona: {
+                    center: {
+                        lat: 34.0489,
+                        lng: -111.0937
+                    },
+                    cases: 120000
+                },
+                georgia: {
+                    center: {
+                        lat: 32.1656,
+                        lng: -82.9001
+                    },
+                    cases: 114000
+                },
+                massachusetts: {
+                    center: {
+                        lat: 42.4072,
+                        lng: -71.3824
+                    },
+                    cases: 111000
+                },
+                pennsylvania: {
+                    center: {
+                        lat: 41.2033,
+                        lng: -77.1945
+                    },
+                    cases: 99000
+                },
+                northcarolina: {
+                    center: {
+                        lat: 35.7596,
+                        lng: -79.0193
+                    },
+                    cases: 84000
+                },
+                louisiana: {
+                    center: {
+                        lat: 30.9843,
+                        lng: -91.9623
+                    },
+                    cases: 77000
+                },
+                michigan: {
+                    center: {
+                        lat: 44.3148,
+                        lng: -85.6024
+                    },
+                    cases: 76000
+                },
+                maryland: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 72000
+                },
+                maryland: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 72000
+                },
+                //provinces
+                bc: {
+                    center: {
+                        lat: 51.2538,
+                        lng: -85.3232
+                    },
+                    cases: 48199
+                },
+                alberta: {
+                    center: {
+                        lat: 46.8139,
+                        lng: -71.2080
+                    },
+                    cases: 48901
+                },
+                saskatchewan: {
+                    center: {
+                        lat: 53.7609,
+                        lng: -98.8139
+                    },
+                    cases: 37189
+                },
+                manitoba: {
+                    center: {
+                        lat: 53.9333,
+                        lng: -116.5765
+                    },
+                    cases: 59890
+                },
+                ontario: {
+                    center: {
+                        lat: 53.7267,
+                        lng: -127.6476
+                    },
+                    cases: 63521
+                },
+                quebec: {
+                    center: {
+                        lat: 52.9399,
+                        lng: -106.4509
+                    },
+                    cases: 60938
+                },
+                yukon: {
+                    center: {
+                        lat: 53.1355,
+                        lng: 57.6604
+                    },
+                    cases: 76387
+                },
+                nw: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 39829
+                },
+                nunavut: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 41879
+                },
+                pei: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 51382
+                },
+                nb: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 50382
+                },
+                //
+                nunavut: {
+                    center: {
+                        lat: 46.5653,
+                        lng: -66.4619
+                    },
+                    cases: 44782
+                },
+                pei: {
+                    center: {
+                        lat: 44.6820,
+                        lng: -63.7443
+                    },
+                    cases: 39892
+                },
+                nb: {
+                    center: {
+                        lat: 46.5107,
+                        lng: -63.4168
+                    },
+                    cases: 61289
+                },
+                ns: {
+                    center: {
+                        lat: 64.2823,
+                        lng: -135.0000,
+                    },
+                    cases: 44989
+                },
+                pey: {
+                    center: {
+                        lat: 64.8255,
+                        lng: -124.8457
+                    },
+                    cases: 31989
+                },
+                yukon: {
+                    center: {
+                        lat: 39.0458,
+                        lng: -76.6413
+                    },
+                    cases: 9191
+                },
+                north: {
+                    center: {
+                        lat: 70.2998,
+                        lng: -83.1076
+                    },
+                    cases: 15892
+                },
+                nun: {
+                    center: {
+                        lat: 46.8139,
+                        lng: -71.2080
+                    },
+                    cases: 19821
+                },
+
+                washington: {
+                    center: {
+                        lat: 47.7511,
+                        lng: -120.7401
+                    },
+                    cases: 41319
+                },
+                wyoming: {
+                    center: {
+                        lat: 43.0760,
+                        lng: -107.2903
+                    },
+                    cases: 11839
+                },
+                montana: {
+                    center: {
+                        lat: 46.8797,
+                        lng: -110.3626
+                    },
+                    cases: 11672
+                },
+                ndakota: {
+                    center: {
+                        lat: 47.5515,
+                        lng: -101.0020
+                    },
+                    cases: 14892
+                },
+                minnesota: {
+                    center: {
+                        lat: 46.7296,
+                        lng: -94.6859
+                    },
+                    cases: 51609
+                },
+                oregon: {
+                    center: {
+                        lat: 43.8041,
+                        lng: -120.5542
+                    },
+                    cases: 21789
+                },
+                idaho: {
+                    center: {
+                        lat: 44.0682,
+                        lng: -114.7420
+                    },
+                    cases: 12891
+                },
+                southdakota: {
+                    center: {
+                        lat: 43.9695,
+                        lng: -99.9000,
+                    },
+                    cases: 18178
+                },
+                iowa: {
+                    center: {
+                        lat: 41.8780,
+                        lng: -93.0977
+                    },
+                    cases: 35829
+                },
+                kansas: {
+                    center: {
+                        lat: 39.0119,
+                        lng: -98.4842
+                    },
+                    cases: 23829
+                },
+                utah: {
+                    center: {
+                        lat: 39.3210,
+                        lng: -111.0937
+                    },
+                    cases: 39829
+                },
+                colorado: {
+                    center: {
+                        lat: 39.5501,
+                        lng: -105.7821
+                    },
+                    cases: 42288
+                },
+                missouri: {
+                    center: {
+                        lat: 37.9643,
+                        lng: -91.8318
+                    },
+                    cases: 31982
+                },
+
+
+
+            };
+
+            var innermap = {
+                usa: {
+                    center: {
+                        lat: 37.09024,
+                        lng: -95.712891
+                    },
+                    cases: 3382508
+                },
+                india: {
+                    center: {
+                        lat: 20.593684,
+                        lng: 78.96288
+                    },
+                    cases: 873816
+                },
+                brazil: {
+                    center: {
+                        lat: -14.235004,
+                        lng: -51.92528
+                    },
+                    cases: 1837828
+                },
+                russia: {
+                    center: {
+                        lat: 61.52401,
+                        lng: 105.318756
+                    },
+                    cases: 727382
+                },
+                peru: {
+                    center: {
+                        lat: -9.189967,
+                        lng: -75.015152
+                    },
+                    cases: 322782
+                },
+                chile: {
+                    center: {
+                        lat: -35.675147,
+                        lng: -71.542969
+                    },
+                    cases: 317828
+                },
             }
-        
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
 
-        <script>
-            (function (exports) {
-                "use strict";
-                var citymap = {
-                    newyork: {
-                        center: {
-                            lat: 40.714,
-                            lng: -74.005
-                        },
-                        cases: 326798
+            function initMap() {
+                // Create the map.
+                var map = new google.maps.Map(document.getElementById("rectangle4"), {
+                    zoom: 2,
+                    center: {
+                        lat: 40.4637,
+                        lng: 3.7492
                     },
-                    california: {
-                        center: {
-                            lat: 34.052,
-                            lng: -118.243
-                        },
-                        cases: 318941
-                    },
-                    texas: {
-                        center: {
-                            lat: 31.9686,
-                            lng: -99.9018
-                        },
-                        cases: 257359
-                    },
-                    florida: {
-                        center: {
-                            lat: 27.6648,
-                            lng: -81.5158
-                        },
-                        cases: 254511
-                    },
-                    illinois: {
-                        center: {
-                            lat: 40.6331,
-                            lng: -89.3985
-                        },
-                        cases: 154000
-                    },
-                    arizona: {
-                        center: {
-                            lat: 34.0489,
-                            lng: -111.0937
-                        },
-                        cases: 120000
-                    },
-                    georgia: {
-                        center: {
-                            lat: 32.1656,
-                            lng: -82.9001
-                        },
-                        cases: 114000
-                    },
-                    massachusetts: {
-                        center: {
-                            lat: 42.4072,
-                            lng: -71.3824
-                        },
-                        cases: 111000
-                    },
-                    pennsylvania: {
-                        center: {
-                            lat: 41.2033,
-                            lng: -77.1945
-                        },
-                        cases: 99000
-                    },
-                    northcarolina: {
-                        center: {
-                            lat: 35.7596,
-                            lng: -79.0193
-                        },
-                        cases: 84000
-                    },
-                    louisiana: {
-                        center: {
-                            lat: 30.9843,
-                            lng: -91.9623
-                        },
-                        cases: 77000
-                    },
-                    michigan: {
-                        center: {
-                            lat: 44.3148,
-                            lng: -85.6024
-                        },
-                        cases: 76000
-                    },
-                    maryland: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 72000
-                    },
-                    maryland: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 72000
-                    },
-                    //provinces
-                    bc: {
-                        center: {
-                            lat: 51.2538,
-                            lng: -85.3232
-                        },
-                        cases: 48199
-                    },
-                    alberta: {
-                        center: {
-                            lat: 46.8139,
-                            lng: -71.2080
-                        },
-                        cases: 48901
-                    },
-                    saskatchewan: {
-                        center: {
-                            lat: 53.7609,
-                            lng: -98.8139
-                        },
-                        cases: 37189
-                    },
-                    manitoba: {
-                        center: {
-                            lat: 53.9333,
-                            lng: -116.5765
-                        },
-                        cases: 59890
-                    },
-                    ontario: {
-                        center: {
-                            lat: 53.7267,
-                            lng: -127.6476
-                        },
-                        cases: 63521
-                    },
-                    quebec: {
-                        center: {
-                            lat: 52.9399,
-                            lng: -106.4509
-                        },
-                        cases: 60938
-                    },
-                    yukon: {
-                        center: {
-                            lat: 53.1355,
-                            lng: 57.6604
-                        },
-                        cases: 76387
-                    },
-                    nw: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 39829
-                    },
-                    nunavut: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 41879
-                    },
-                    pei: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 51382
-                    },
-                    nb: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases:50382
-                    },
-                    //
-                    nunavut: {
-                        center: {
-                            lat: 46.5653,
-                            lng: -66.4619
-                        },
-                        cases: 44782
-                    },
-                    pei: {
-                        center: {
-                            lat: 44.6820,
-                            lng: -63.7443
-                        },
-                        cases: 39892
-                    },
-                    nb: {
-                        center: {
-                            lat: 46.5107,
-                            lng: -63.4168
-                        },
-                        cases: 61289
-                    },
-                    ns: {
-                        center: {
-                            lat: 64.2823,
-                            lng: -135.0000,
-                        },
-                        cases: 44989
-                    },
-                    pey: {
-                        center: {
-                            lat: 64.8255,
-                            lng: -124.8457
-                        },
-                        cases: 31989
-                    },
-                    yukon: {
-                        center: {
-                            lat: 39.0458,
-                            lng: -76.6413
-                        },
-                        cases: 9191
-                    },
-                    north: {
-                        center: {
-                            lat: 70.2998,
-                            lng: -83.1076
-                        },
-                        cases: 15892
-                    },
-                    nun: {
-                        center: {
-                            lat: 46.8139,
-                            lng: -71.2080
-                        },
-                        cases: 19821
-                    },
+                    styles: [{
+                        "stylers": [{
+                            "hue": "#393E42"
+                        }, {
+                            "invert_lightness": true
+                        }, {
+                            "saturation": -85
+                        }, {
+                            "lightness": 33
+                        }, {
+                            "gamma": 0.5
+                        }]
+                    }, {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [{
+                            "color": "#212128"
+                        }]
+                    }],
+                    zoomControl: true,
+                    mapTypeControl: false,
+                    scaleControl: false,
+                    streetViewControl: false,
+                    rotateControl: false,
+                    fullscreenControl: true
+                }); // Construct the circle for each value in citymap.
+                // Note: We scale the area of the circle based on the cases.
 
-                    washington: {
-                        center: {
-                            lat: 47.7511,
-                            lng: -120.7401
-                        },
-                        cases: 41319
-                    },
-                    wyoming: {
-                        center: {
-                            lat: 43.0760,
-                            lng: -107.2903
-                        },
-                        cases: 11839
-                    },
-                    montana: {
-                        center: {
-                            lat:46.8797,
-                            lng: -110.3626
-                        },
-                        cases: 11672
-                    },
-                    ndakota: {
-                        center: {
-                            lat: 47.5515,
-                            lng: -101.0020
-                        },
-                        cases: 14892
-                    },
-                    minnesota: {
-                        center: {
-                            lat: 46.7296,
-                            lng: -94.6859
-                        },
-                        cases: 51609
-                    },
-                    oregon: {
-                        center: {
-                            lat: 43.8041,
-                            lng: -120.5542
-                        },
-                        cases: 21789
-                    },
-                    idaho: {
-                        center: {
-                            lat: 44.0682,
-                            lng: -114.7420
-                        },
-                        cases: 12891
-                    },
-                    southdakota: {
-                        center: {
-                            lat: 43.9695,
-                            lng: -99.9000,
-                        },
-                        cases: 18178
-                    },
-                    iowa: {
-                        center: {
-                            lat: 41.8780,
-                            lng: -93.0977
-                        },
-                        cases: 35829
-                    },
-                    kansas: {
-                        center: {
-                            lat: 39.0119,
-                            lng: -98.4842
-                        },
-                        cases: 23829
-                    },
-                    utah: {
-                        center: {
-                            lat: 39.3210,
-                            lng: -111.0937
-                        },
-                        cases: 39829
-                    },
-                    colorado: {
-                        center: {
-                            lat: 39.5501,
-                            lng: -105.7821
-                        },
-                        cases: 42288
-                    },
-                    missouri: {
-                        center: {
-                            lat: 37.9643,
-                            lng: -91.8318
-                        },
-                        cases: 31982
-                    },
+                for (var inner in innermap) {
 
-                    
-
-                };
-
-                var innermap = {
-                    usa: {
-                        center: {
-                            lat:37.09024,
-                            lng:-95.712891
-                        },
-                        cases: 3382508
-                    },
-                    india: {
-                        center: {
-                            lat:20.593684,
-                            lng: 78.96288
-                        },
-                        cases: 873816
-                    },
-                    brazil: {
-                        center: {
-                            lat: -14.235004,
-                            lng: -51.92528
-                        },
-                        cases: 1837828
-                    },
-                    russia: {
-                        center: {
-                            lat:61.52401,
-                            lng: 105.318756
-                        },
-                        cases: 727382
-                    },
-                    peru: {
-                        center: {
-                            lat: -9.189967,
-                            lng: -75.015152
-                        },
-                        cases: 322782
-                    },
-                    chile: {
-                        center: {
-                            lat:-35.675147,
-                            lng: -71.542969
-                        },
-                        cases: 317828
-                    },
-                }
-
-                function initMap() {
-                    // Create the map.
-                    var map = new google.maps.Map(document.getElementById("rectangle4"), {
-                        zoom: 2,
-                        center: {
-                            lat: 40.4637,
-                            lng: 3.7492  
-                        },
-                        styles: [
-                            {
-                                "stylers": [
-                                    {
-                                        "hue": "#393E42"
-                                    },
-                                    {
-                                        "invert_lightness": true
-                                    },
-                                    {
-                                        "saturation": -85
-                                    },
-                                    {
-                                        "lightness": 33
-                                    },
-                                    {
-                                        "gamma": 0.5
-                                    }
-                                ]
-                            },
-                            {
-                                "featureType": "water",
-                                "elementType": "geometry",
-                                "stylers": [
-                                    {
-                                        "color": "#212128"
-                                    }
-                                ]
-                            }
-                        ],
-                        zoomControl: true,
-                        mapTypeControl: false,
-                        scaleControl: false,
-                        streetViewControl: false,
-                        rotateControl: false,
-                        fullscreenControl: true
-                    }); // Construct the circle for each value in citymap.
-                    // Note: We scale the area of the circle based on the cases.
-
-                    for (var inner in innermap) {
-
-                        var innerCircle = new google.maps.Circle({
-                            strokeColor: "#6e00cf",
-                            strokeOpacity: 1,
-                            strokeWeight: 1,
-                            fillColor: "#ff0af3",
-                            fillOpacity: 0.5,
-                            map: map,
-                            center: innermap[inner].center,
-                            radius: Math.sqrt(innermap[inner].cases) * 300,
-                        });
-
-                    }
-
-                    for (var city in citymap) {
-                        
-                        // Add the circle for this city to the map.
-                        // var cityCircle = new google.maps.Circle({
-                        //     strokeColor: "#780613",
-                        //     strokeOpacity: 0.8,
-                        //     strokeWeight: 1.5,
-                        //     fillColor: "#FF0000",
-                        //     fillOpacity: 0.08,
-                        //     map: map,
-                        //     center: citymap[city].center,
-                        //     radius: Math.sqrt(citymap[city].cases) * 150,
-                        // });
-
-                        var marker = new google.maps.Marker({
-                            position: citymap[city].center,
-                            icon: {
-                                url: "assets/state.png",
-                                scaledSize: new google.maps.Size(citymap[city].cases/8000, citymap[city].cases/8000),
-                                fillOpacity: 0.8
-                            },
-                            map: map
-                        });
-                    }
-
-                }
-
-                exports.innermap = innermap;
-                exports.citymap = citymap;
-                exports.initMap = initMap;
-
-                var userLat = localStorage.getItem('userLat');
-                var userLong = localStorage.getItem('userLong');
-
-                console.log("USER LOCATION", userLat, userLong);
-
-                function getAddress(latitude, longitude) {
-                    return new Promise(function (resolve, reject) {
-                        var request = new XMLHttpRequest();
-
-                        var method = 'GET';
-                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA';
-                        var async = true;
-
-                        request.open(method, url, async);
-                        request.onreadystatechange = function () {
-                            if (request.readyState == 4) {
-                                if (request.status == 200) {
-                                    var data = JSON.parse(request.responseText);
-                                    console.log(data);
-                                    var address = data.results[0];
-                                    console.log(address);
-                                    resolve(address);
-                                }
-                                else {
-                                    reject(request.status);
-                                }
-                            }
-                        };
-                        request.send();
+                    var innerCircle = new google.maps.Circle({
+                        strokeColor: "#6e00cf",
+                        strokeOpacity: 1,
+                        strokeWeight: 1,
+                        fillColor: "#ff0af3",
+                        fillOpacity: 0.5,
+                        map: map,
+                        center: innermap[inner].center,
+                        radius: Math.sqrt(innermap[inner].cases) * 300,
                     });
-                };
 
-                getAddress(userLat, userLong).then(console.log).catch(console.error);
+                }
 
-            })((this.window = this.window || {}));
-        </script>
+                for (var city in citymap) {
 
-    </head>
+                    // Add the circle for this city to the map.
+                    // var cityCircle = new google.maps.Circle({
+                    //     strokeColor: "#780613",
+                    //     strokeOpacity: 0.8,
+                    //     strokeWeight: 1.5,
+                    //     fillColor: "#FF0000",
+                    //     fillOpacity: 0.08,
+                    //     map: map,
+                    //     center: citymap[city].center,
+                    //     radius: Math.sqrt(citymap[city].cases) * 150,
+                    // });
 
-    <body>
-        <div data-layer="b751285d-3bf3-400c-95d8-4aa0e48da370" class="globalData">        <svg data-layer="4dcd2132-7e38-4acf-b0ff-197a8a734b7f" preserveAspectRatio="none" viewBox="-0.75 -0.75 1601.5 901.5" class="path9"><path d="M 0 0 L 1600 0 L 1600 900 L 0 900 L 0 0 Z"  /></svg>
+                    var marker = new google.maps.Marker({
+                        position: citymap[city].center,
+                        icon: {
+                            url: "assets/state.png",
+                            scaledSize: new google.maps.Size(citymap[city].cases / 8000, citymap[city].cases / 8000),
+                            fillOpacity: 0.8
+                        },
+                        map: map
+                    });
+                }
+
+            }
+
+            exports.innermap = innermap;
+            exports.citymap = citymap;
+            exports.initMap = initMap;
+
+            var userLat = localStorage.getItem('userLat');
+            var userLong = localStorage.getItem('userLong');
+
+            console.log("USER LOCATION", userLat, userLong);
+
+            function getAddress(latitude, longitude) {
+                return new Promise(function(resolve, reject) {
+                    var request = new XMLHttpRequest();
+
+                    var method = 'GET';
+                    var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=AIzaSyB5bmKTstITqjbnETspdi3Nse9oI8DbVDA';
+                    var async = true;
+
+                    request.open(method, url, async);
+                    request.onreadystatechange = function() {
+                        if (request.readyState == 4) {
+                            if (request.status == 200) {
+                                var data = JSON.parse(request.responseText);
+                                console.log(data);
+                                var address = data.results[0];
+                                console.log(address);
+                                resolve(address);
+                            } else {
+                                reject(request.status);
+                            }
+                        }
+                    };
+                    request.send();
+                });
+            };
+
+            getAddress(userLat, userLong).then(console.log).catch(console.error);
+
+        })((this.window = this.window || {}));
+    </script>
+
+</head>
+
+<body>
+    <div data-layer="b751285d-3bf3-400c-95d8-4aa0e48da370" class="globalData"> <svg data-layer="4dcd2132-7e38-4acf-b0ff-197a8a734b7f" preserveAspectRatio="none" viewBox="-0.75 -0.75 1601.5 901.5" class="path9"><path d="M 0 0 L 1600 0 L 1600 900 L 0 900 L 0 0 Z"  /></svg>
         <div data-layer="9676109c-87d0-4ec8-b00f-c01df4a62916" class="globalData29d26be8">Global Data</div>
         <div data-layer="d05ce185-54cf-45cc-ae67-92311377400b" class="rectangle4" id="rectangle4"></div>
-        <div data-layer="33850afd-7ad2-4ec7-868e-8778b9c77f2d" class="badge">            <div data-layer="11ed979f-5856-40b1-a919-8742a436b96f" class="area338589e7"></div>
+        <div data-layer="33850afd-7ad2-4ec7-868e-8778b9c77f2d" class="badge">
+            <div data-layer="11ed979f-5856-40b1-a919-8742a436b96f" class="area338589e7"></div>
             <div data-layer="25145898-8086-4b8d-a042-5705633f1d61" class="metadatab1d6666d">{"config":{},"type":"Badge","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T20:42:57.015Z"}</div>
-</div>
-        <div data-layer="9b239652-dc9b-4eba-bf4a-241c804e46a1" class="tabs8f6cee01">            <div data-layer="4b4d34d7-1f7a-408a-8dce-445d8025cc41" class="placeholderTabItem88ba4009">                <div data-layer="f229efca-507c-4b3a-9b63-3dc43b33294e" class="area61f1a0f1">                    <div data-layer="d935df42-cc00-4653-b3c4-d2342ed93701" class="placementAreaf7ba25b4"></div>
+        </div>
+        <div data-layer="9b239652-dc9b-4eba-bf4a-241c804e46a1" class="tabs8f6cee01">
+            <div data-layer="4b4d34d7-1f7a-408a-8dce-445d8025cc41" class="placeholderTabItem88ba4009">
+                <div data-layer="f229efca-507c-4b3a-9b63-3dc43b33294e" class="area61f1a0f1">
+                    <div data-layer="d935df42-cc00-4653-b3c4-d2342ed93701" class="placementAreaf7ba25b4"></div>
                     <div data-layer="5d74f100-c052-4a39-9da3-1e0dd8d415eb" class="bar6a0057b7"></div>
-</div>
+                </div>
                 <div data-layer="58eb45b5-6163-4303-972b-f340a74c1468" class="label9d0f401a">Label</div>
-</div>
-            <div data-layer="43336b6a-66ec-47f3-ae03-b8327df8a2ef" class="tabItem0e8f0b0a">                <div data-layer="abf40558-fa24-4fab-b790-106dc0af9bbf" class="areabdb9cf50">                    <div data-layer="256b272f-1b66-4ccd-9f00-d634b2a6d6c5" class="placementArea5f3054e9"></div>
+            </div>
+            <div data-layer="43336b6a-66ec-47f3-ae03-b8327df8a2ef" class="tabItem0e8f0b0a">
+                <div data-layer="abf40558-fa24-4fab-b790-106dc0af9bbf" class="areabdb9cf50">
+                    <div data-layer="256b272f-1b66-4ccd-9f00-d634b2a6d6c5" class="placementArea5f3054e9"></div>
                     <div data-layer="ac0d6cff-2457-441a-82de-330353857fe3" class="barbf23d325"></div>
-</div>
+                </div>
                 <div data-layer="478e4ba6-1965-4e75-831d-74f190bd5d2e" class="label0ba2b5ce">Global Data </div>
                 <div data-layer="7a9094bd-6251-4e1d-b912-d2199822ad10" class="metadatadee3c7f2">{"config":{"STATE":"DEFAULT"},"type":"TabItem","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.232Z"}</div>
-</div>
+            </div>
             <div data-layer="62b4a00e-753e-46fd-8555-84612d9c0689" class="metadata5edaea17">{"config":{},"type":"Tabs","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.234Z"}</div>
-</div>
-        <div data-layer="2e6ae4ed-7312-4d79-92b6-b556fa64fb5f" class="tabse73760a9">            <div data-layer="db588a8d-7c33-4586-97a8-d154880f893e" class="placeholderTabItem663f3981">                <div data-layer="6b510cc3-17c8-4887-84af-e88f36461d3c" class="area8307e086">                    <div data-layer="7aa69eb3-b30e-43a2-a736-46f629f0aff3" class="placementAreacbe67e38"></div>
+        </div>
+        <div data-layer="2e6ae4ed-7312-4d79-92b6-b556fa64fb5f" class="tabse73760a9">
+            <div data-layer="db588a8d-7c33-4586-97a8-d154880f893e" class="placeholderTabItem663f3981">
+                <div data-layer="6b510cc3-17c8-4887-84af-e88f36461d3c" class="area8307e086">
+                    <div data-layer="7aa69eb3-b30e-43a2-a736-46f629f0aff3" class="placementAreacbe67e38"></div>
                     <div data-layer="d56807f3-a215-4ade-94c6-e11c737a8ad6" class="bar521b38f1"></div>
-</div>
+                </div>
                 <div data-layer="ae67501c-9913-4d32-a0d8-f2c87ac35d7e" class="labelab7f2057">Label</div>
-</div>
-            <div data-layer="b3360677-5f70-4972-9d61-23eab339a0cf" class="tabItemf7f8dcfd">                <div data-layer="a3dfeea1-23fc-4cd8-a0d5-232a7c9739e1" class="area9652a148">                    <div data-layer="a5b5d9a2-8690-4587-96e4-e2ee3b4260e6" class="placementArea79a777d9"></div>
+            </div>
+            <div data-layer="b3360677-5f70-4972-9d61-23eab339a0cf" class="tabItemf7f8dcfd">
+                <div data-layer="a3dfeea1-23fc-4cd8-a0d5-232a7c9739e1" class="area9652a148">
+                    <div data-layer="a5b5d9a2-8690-4587-96e4-e2ee3b4260e6" class="placementArea79a777d9"></div>
                     <div data-layer="f5866ba1-5998-40c0-ba57-e64b4c880ea3" class="bar5857bb00"></div>
-</div>
+                </div>
                 <div data-layer="8626199a-fc01-4cbd-83ee-21c780cbc64e" class="labeld41d2696">COVID-19 News </div>
                 <div data-layer="fcf82530-726b-4c79-b38a-a5590edecfce" class="metadatab277637b">{"config":{"STATE":"DEFAULT"},"type":"TabItem","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.232Z"}</div>
-</div>
+            </div>
             <div data-layer="36aef20c-4d27-4a8e-a58b-5b65059948c7" class="metadata74ee3e61">{"config":{},"type":"Tabs","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.234Z"}</div>
-</div>
-        <div data-layer="34df4ec9-da76-441c-84b3-ceb6cd0927b4" class="tabse8e0b6c5">            <div data-layer="79b1892a-d2ce-4a88-8a16-78b78ddfcd98" class="placeholderTabItemafc4639d">                <div data-layer="c94674ca-ff99-4a9f-9eb2-16dc9289fe8b" class="area2cb05737">                    <div data-layer="8b84fe45-fde5-4bd4-bb62-2b1faab2330e" class="placementArea6015c35e"></div>
+        </div>
+        <div data-layer="34df4ec9-da76-441c-84b3-ceb6cd0927b4" class="tabse8e0b6c5">
+            <div data-layer="79b1892a-d2ce-4a88-8a16-78b78ddfcd98" class="placeholderTabItemafc4639d">
+                <div data-layer="c94674ca-ff99-4a9f-9eb2-16dc9289fe8b" class="area2cb05737">
+                    <div data-layer="8b84fe45-fde5-4bd4-bb62-2b1faab2330e" class="placementArea6015c35e"></div>
                     <div data-layer="6cab15b9-92ea-442f-b4a5-b86e1ea8badf" class="barc29268d2"></div>
-</div>
+                </div>
                 <div data-layer="4ba15f9d-12a1-40dd-8462-0ae28fcc39dd" class="labeld5038bcf">Label</div>
-</div>
-            <div data-layer="7d81e544-e309-4228-88b0-fe8dc2343c26" class="tabItem44793778">                <div data-layer="91a1df20-1fff-441c-bf9d-6054b0a22de6" class="area146ad626">                    <div data-layer="d2225f84-9970-4cb6-94a6-ad057042d517" class="placementArea821aba6d"></div>
+            </div>
+            <div data-layer="7d81e544-e309-4228-88b0-fe8dc2343c26" class="tabItem44793778">
+                <div data-layer="91a1df20-1fff-441c-bf9d-6054b0a22de6" class="area146ad626">
+                    <div data-layer="d2225f84-9970-4cb6-94a6-ad057042d517" class="placementArea821aba6d"></div>
                     <div data-layer="24af9c2f-fe3a-493e-a144-a515383979e0" class="bare66d9eac"></div>
-</div>
+                </div>
                 <div data-layer="eab799f0-9bca-455b-97b2-50ecb3cc6692" class="labele78ca709">Safety Tips</div>
                 <div data-layer="07700ef0-cae2-4ff6-b582-712f3d2c9337" class="metadatae071cbf2">{"config":{"STATE":"DEFAULT"},"type":"TabItem","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.232Z"}</div>
-</div>
+            </div>
             <div data-layer="e86e9439-71f3-4e75-bc7c-6162803d4e89" class="metadataf5caf856">{"config":{},"type":"Tabs","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.234Z"}</div>
-</div>
-        <div data-layer="b99a08e6-eea8-418b-a2b0-e11384dd371a" class="tabs">            <div data-layer="d8348d7f-c792-4fe9-8399-418b5a71a5e7" class="placeholderTabItem">                <div data-layer="54da4278-0fee-4460-9555-ba8ceca4f87a" class="areade33b132">                    <div data-layer="c5188b02-6d53-48c2-8ab2-ea497182a00c" class="placementArea414569e1"></div>
+        </div>
+        <div data-layer="b99a08e6-eea8-418b-a2b0-e11384dd371a" class="tabs">
+            <div data-layer="d8348d7f-c792-4fe9-8399-418b5a71a5e7" class="placeholderTabItem">
+                <div data-layer="54da4278-0fee-4460-9555-ba8ceca4f87a" class="areade33b132">
+                    <div data-layer="c5188b02-6d53-48c2-8ab2-ea497182a00c" class="placementArea414569e1"></div>
                     <div data-layer="6279a4fb-6be6-4e07-867d-61d26fdb3962" class="barc0acb76f"></div>
-</div>
+                </div>
                 <div data-layer="b6b8da74-1ee0-48f6-97fe-b86e05b0dfa2" class="labeldc645d3c">Label</div>
-</div>
-            <div data-layer="957eb1e2-f8e2-4605-92b8-ba7b675dbb9a" class="tabItem">                <div data-layer="8346cafc-1beb-4a8c-a3d7-be80e8a1155e" class="area">                    <div data-layer="dbaaec0c-ee0b-490d-9c71-a12deb1b883f" class="placementArea"></div>
+            </div>
+            <div data-layer="957eb1e2-f8e2-4605-92b8-ba7b675dbb9a" class="tabItem">
+                <div data-layer="8346cafc-1beb-4a8c-a3d7-be80e8a1155e" class="area">
+                    <div data-layer="dbaaec0c-ee0b-490d-9c71-a12deb1b883f" class="placementArea"></div>
                     <div data-layer="de840d7e-4fb6-40db-8f6b-5cc1c3f4c788" class="bar"></div>
-</div>
+                </div>
                 <div data-layer="68090743-ede2-44fe-8642-1ea26afb7694" class="label">Home</div>
+                <a href="/dashboard/dashboard.html" class="label">Home</a>
                 <div data-layer="4ad4ef5f-ee05-4694-8be6-6942447171cd" class="metadataa86f8d06">{"config":{"STATE":"DEFAULT"},"type":"TabItem","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.232Z"}</div>
-</div>
+            </div>
             <div data-layer="b1016f67-d3d1-49d9-aa0d-75dfa4f67642" class="metadata">{"config":{},"type":"Tabs","theme":"Radiance","__plugin":"Mockup","__version":"1.2.1","__lastUpdate":"2020-07-11T21:23:28.234Z"}</div>
-</div>
+        </div>
         <div data-layer="aaf19f77-b9b9-4e86-8322-35d642398015" class="globalStatistics">Global Statistics</div>
         <div data-layer="d6bf3d24-430b-41aa-8a56-a7305b4edb09" class="total12931542">Total: 12,931,542</div>
         <div data-layer="2bc8f39d-e04d-4743-ba1a-6664540a3bbe" class="deaths569098">Deaths: 569,098</div>
@@ -620,7 +630,8 @@
         <svg data-layer="231a0399-a89e-44d5-9f28-2fbb93d5e2db" preserveAspectRatio="none" viewBox="0 0 285 50" class="path29ff58b78c"><path d="M 10 0 L 275 0 C 280.5228576660156 0 285 4.477152347564697 285 10 L 285 40 C 285 45.52284622192383 280.5228576660156 50 275 50 L 102.2062072753906 50 L 10 50 C 4.477152347564697 50 0 45.52284622192383 0 40 L 0 10 C 0 4.477152347564697 4.477152347564697 0 10 0 Z"  /></svg>
         <svg data-layer="a7233f2e-23f9-4db0-89a2-085587bf7b78" preserveAspectRatio="none" viewBox="0 0 285 50" class="path299cedc2ba"><path d="M 10 0 L 275 0 C 280.5228576660156 0 285 4.477152347564697 285 10 L 285 40 C 285 45.52284622192383 280.5228576660156 50 275 50 L 102.2062072753906 50 L 10 50 C 4.477152347564697 50 0 45.52284622192383 0 40 L 0 10 C 0 4.477152347564697 4.477152347564697 0 10 0 Z"  /></svg>
         <svg data-layer="6b179b13-92ba-4f03-8625-b3c3aaa0e2ac" preserveAspectRatio="none" viewBox="0 0 285 50" class="path29"><path d="M 10 0 L 275 0 C 280.5228576660156 0 285 4.477152347564697 285 10 L 285 40 C 285 45.52284622192383 280.5228576660156 50 275 50 L 102.2062072753906 50 L 10 50 C 4.477152347564697 50 0 45.52284622192383 0 40 L 0 10 C 0 4.477152347564697 4.477152347564697 0 10 0 Z"  /></svg>
-        <div data-layer="a56977c1-4b0a-4c14-904b-17dba494b88d" class="usa">USA</div>
+        <div data-layer="a56977c1-4b0a-4c14-904b-17dba494b88d" class="usa"></div>
+        <a href="../americaData/americaData.html" class="usa">USA</a>
         <div data-layer="4b6cf338-4a9d-42d5-88db-c80818bfdab3" class="brazil">Brazil</div>
         <div data-layer="0b45aea1-db3d-469d-94b3-983e1f96772c" class="india">India</div>
         <div data-layer="d00d570c-6174-49b3-b5d1-2d7105a7d39c" class="russia">Russia</div>
@@ -644,23 +655,23 @@
         <div data-layer="90202847-8715-482c-b5e1-efbbd0f5e0e0" class="image10"></div>
         <div data-layer="edc65704-6d3d-4a4d-b381-a05cec26b849" class="image11"></div>
         <div data-layer="50e324b7-de4f-4e58-94a7-5f1f73c1f56c" class="image12"></div>
-        <div data-layer="168a164c-b37d-4c82-9d12-aac49f179536" class="x3355646">3,355,646	</div>
+        <div data-layer="168a164c-b37d-4c82-9d12-aac49f179536" class="x3355646">3,355,646 </div>
         <div data-layer="2e65efff-cd09-4eda-8496-00a27027124c" class="x1840812">1,840,812</div>
-        <div data-layer="f5ae4f5a-de0a-452c-bbda-b06798ec538f" class="x850827">850,827	</div>
+        <div data-layer="f5ae4f5a-de0a-452c-bbda-b06798ec538f" class="x850827">850,827 </div>
         <div data-layer="8b5643cd-b72a-4109-b01b-15e6b78de80a" class="x720547">720,547</div>
-        <div data-layer="674fcdb6-fc60-4efd-8b8c-038c4fa98a94" class="x322710">322,710	</div>
-        <div data-layer="12f3c958-35c4-408b-9caf-c1c20e97e4cd" class="x312029">312,029	</div>
-        <div data-layer="7e2420f1-e43f-45ba-89e0-214844686f15" class="x300988">300,988	</div>
-        <div data-layer="7f83b0f0-2219-4677-aa44-6595feb9ee3f" class="x295268">295,268	</div>
-        <div data-layer="e1293876-b8ae-4d6b-b9b2-fdff99a88cb6" class="x288953">288,953	</div>
-        <div data-layer="07720a6d-10ff-4855-a390-a309814b4f72" class="x264184">264,184	</div>
-        <div data-layer="243f9713-0f05-4b18-9509-4ef79b954927" class="x255117">255,117	</div>
+        <div data-layer="674fcdb6-fc60-4efd-8b8c-038c4fa98a94" class="x322710">322,710 </div>
+        <div data-layer="12f3c958-35c4-408b-9caf-c1c20e97e4cd" class="x312029">312,029 </div>
+        <div data-layer="7e2420f1-e43f-45ba-89e0-214844686f15" class="x300988">300,988 </div>
+        <div data-layer="7f83b0f0-2219-4677-aa44-6595feb9ee3f" class="x295268">295,268 </div>
+        <div data-layer="e1293876-b8ae-4d6b-b9b2-fdff99a88cb6" class="x288953">288,953 </div>
+        <div data-layer="07720a6d-10ff-4855-a390-a309814b4f72" class="x264184">264,184 </div>
+        <div data-layer="243f9713-0f05-4b18-9509-4ef79b954927" class="x255117">255,117 </div>
         <div data-layer="a52f96af-acc5-477e-9a2f-39c108bd30f4" class="x248872">248,872</div>
         <svg data-layer="62ac5096-caea-486e-88b5-fea8752dd008" preserveAspectRatio="none" viewBox="1884.710693359375 457.5567626953125 590.0738525390625 126.513671875" class="path31"><defs><pattern id="img-path31" patternContentUnits="userSpaceOnUse" width="100%" height="100%"><image xlink:href="assets/path31.png" x="0" y="0" width="590.07px" height="126.51px" /></pattern></defs><path d="M 1884.710693359375 485.0728759765625 C 1884.710693359375 485.0728759765625 1896.2548828125 496.9610595703125 1917.0849609375 496.7576904296875 C 1926.392578125 496.6668701171875 1937.992919921875 489.1179809570313 1953.315185546875 488.853271484375 C 1965.071533203125 488.7412109375 1975.635498046875 477.0947265625 1988.773193359375 476.972900390625 C 2002.08642578125 476.849365234375 2010.870361328125 482.2548828125 2025.002197265625 482.1279296875 C 2038.219970703125 482.0092163085938 2054.685791015625 477.0899658203125 2068.170166015625 476.972900390625 C 2081.78564453125 476.8546142578125 2097.029541015625 491.0281982421875 2110.565673828125 490.915283203125 C 2124.158203125 490.8018798828125 2137.93994140625 483.805419921875 2151.42041015625 483.6981811523438 C 2166.57470703125 483.57763671875 2180.033935546875 474.3319091796875 2194.587646484375 474.2235107421875 C 2210.227294921875 474.1070556640625 2224.40283203125 482.2284545898438 2239.17236328125 482.1279296875 C 2253.941650390625 482.0274658203125 2263.9248046875 477.0563354492188 2277.838134765625 476.972900390625 C 2294.647216796875 476.8720703125 2319.00048828125 486.8624877929688 2334.109619140625 486.791259765625 C 2350.899169921875 486.7120361328125 2368.5419921875 474.26123046875 2382.672119140625 474.2235107421875 C 2400.610595703125 474.1754760742188 2414.799560546875 463.0510864257813 2428.15185546875 463.077880859375 C 2455.20166015625 463.1322631835938 2471.036865234375 457.1461791992188 2473.63134765625 457.5791625976563 C 2476.226318359375 458.0121459960938 2473.63134765625 584.0706787109375 2473.63134765625 584.0706787109375 L 1884.710693359375 584.0706787109375 L 1884.710693359375 485.0728759765625 Z" fill="url(#img-path31)" /></svg>
-</div>
+    </div>
 
 
-    
-    </body>
-    </html>
-            
+
+</body>
+
+</html>
