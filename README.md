@@ -1,4 +1,5 @@
-# COVID WATCH
+# COVID WATCH  ![COVID-WATCH](https://cdn.discordapp.com/attachments/726220926139629639/731927255759978576/ICON.png)
+
 
 A robust crowd-sourcing tool and nexus for all things Covid-19 related brought to you by web-scraping and scientific databases. 
 
@@ -34,5 +35,3 @@ The biggest takeaway was how to fully modify and work with the Google Maps API. 
 
 ## What's next for COVID WATCH
 The next stage would be to link even more granular data from nations across the globe, in turn, being able to zoom or click on any country and immediately see regional data. The biggest changes, however, would be the customizability of graphs, being able to select from a larger pool of datasets such as total treatment rate, treatment rate per 1 million, etc, this way we provide an even more detailed report of every country, region, and city. 
-
-![COVID-WATCH](https://cdn.discordapp.com/attachments/726220926139629639/731927255759978576/ICON.png)
