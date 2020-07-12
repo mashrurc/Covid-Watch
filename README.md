@@ -1,5 +1,5 @@
-# COVID WATCH  ![COVID-WATCH](https://cdn.discordapp.com/attachments/726220926139629639/731927255759978576/ICON.png) COVID WATCH
-
+# COVID WATCH  
+![COVID-WATCH](https://cdn.discordapp.com/attachments/726220926139629639/731927255759978576/ICON.png)
 
 A robust crowd-sourcing tool and nexus for all things Covid-19 related brought to you by web-scraping and scientific databases. 
 
